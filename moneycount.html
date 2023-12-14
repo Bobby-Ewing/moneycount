@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<head>
+	<style>
+		td.notelist {
+			!color:darkgreen;
+			text-align: right;
+		}
+		td.amount {
+			!color: lightblue;
+		}
+		input.inputamount {
+			initial-value: "0";
+			width: 60px;
+		}
+	</style>
+	<script type="text/javascript">
+		let flipped=false;
+
+		function calc(){
+			let notes=[0.01,0.02,0.05,0.1,0.2,0.5,1,2,5,10,20,50];
+			if(flipped){
+				notes = notes.reverse();
+			}
+			let fields=document.getElementsByClassName("inputamount");
+			let results=document.getElementsByClassName("result");
+			console.log(`results length: ${results.length}`)
+			let sum=0
+			let i;
+			for (i=0; i<fields.length;i++){
+				if (fields[i].value!=undefined && fields[i].value!="") {
+					//console.log(`${i}: ${fields[i].value}`)
+					subsum=parseInt(fields[i].value)*notes[i];
+					results[i].innerHTML=subsum.toFixed(2);
+					sum+=subsum;
+				}
+			}
+
+			document.getElementById("totalp").innerHTML="Total="+sum.toFixed(2);
+			//console.log(`sum: ${sum}`);
+			console.log(`sum: ${sum}`)		
+		}
+
+		function reset(){
+			let fields=document.getElementsByClassName("inputamount");
+			let results=document.getElementsByClassName("result");
+			let i;
+			for (i=0; i<fields.length;i++){
+				fields[i].value=0;
+				results[i].innerHTML=""
+			}
+			document.getElementById("totalp").innerHTML="Total=0"
+		}
+
+		function reverseChildren(parent) {
+			flipped=!flipped;
+		    for (var i = 1; i < parent.childNodes.length; i++){
+		        parent.insertBefore(parent.childNodes[i], parent.firstChild);
+		    }
+		}
+	</script>
+</head>
+<body>
+	<table>
+		<tbody id="turnip">
+			<tr>
+				<td class="notelist">
+					1p &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					2p &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					5p &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					10p &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					20p &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					50p &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					&#163;1 &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					&#163;2 &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					&#163;5 &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					&#163;10 &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					&#163;20 &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+			<tr>
+				<td class="notelist">
+					&#163;50 &times;
+				</td>
+				<td class="amount">
+					<input class="inputamount" type="number">
+					</input>
+				</td>
+				<td>
+					=
+				</td>
+				<td class="result">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p id="totalp">Total=0</p>
+	<button onclick="calc()">Calculate</button>
+	<button onclick="reset()">Reset</button>
+	<button onclick="reverseChildren(document.getElementById('turnip'))"">Mustard</button>
+</body>
